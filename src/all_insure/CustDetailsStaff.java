@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package all_insure;
 
 import javax.swing.JTable;
@@ -14,12 +9,12 @@ import javax.swing.JTable;
 public class CustDetailsStaff extends javax.swing.JFrame {
 
     // Variables declaration - do not modify                     
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel myStaffLbl; // label to display MyStaff
+    private javax.swing.JLabel customerLbl; // label to display Customer detail
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane frameScrollPane; // scroll pane of whole frame
+    private javax.swing.JScrollPane custScrollPane; // scroll pane of customer table
+    private javax.swing.JTable custDetailTable;
     // End of variables declaration  
 
     public CustDetailsStaff() {
@@ -35,24 +30,25 @@ public class CustDetailsStaff extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("SimSun-ExtB", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 153, 102));
-        jLabel1.setText("myStaff");
+        frameScrollPane = new javax.swing.JScrollPane();
+        frameScrollPane.setViewportView(jPanel1);
+        
+        jPanel1 = new javax.swing.JPanel();
 
-        jLabel2.setFont(new java.awt.Font("SimSun-ExtB", 1, 18)); // NOI18N
-        jLabel2.setText("Customer Details: ");
+        custScrollPane = new javax.swing.JScrollPane();
+        custScrollPane.setViewportView(custDetailTable);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        myStaffLbl = new javax.swing.JLabel("MyStaff");
+        myStaffLbl.setFont(new java.awt.Font("SimSun-ExtB", 1, 24)); // NOI18N
+        myStaffLbl.setForeground(new java.awt.Color(0, 153, 102));
+
+        customerLbl = new javax.swing.JLabel("Customer Details: ");
+        customerLbl.setFont(new java.awt.Font("SimSun-ExtB", 1, 18)); // NOI18N
+
+        custDetailTable = new javax.swing.JTable();
+        custDetailTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {" Mobile", null},
                 {" Email", " "},
@@ -70,55 +66,46 @@ public class CustDetailsStaff extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
+        if (custDetailTable.getColumnModel().getColumnCount() > 0) {
+            custDetailTable.getColumnModel().getColumn(0).setResizable(false);
+            custDetailTable.getColumnModel().getColumn(0).setPreferredWidth(1);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(myStaffLbl)
+                    .addComponent(customerLbl)
+                    .addComponent(custScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(91, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(myStaffLbl)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(customerLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(custScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(296, Short.MAX_VALUE))
         );
 
-        jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(frameScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(frameScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>                        
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -152,10 +139,7 @@ public class CustDetailsStaff extends javax.swing.JFrame {
         });
     }
 
-    public JTable getjTable1() {
-        return jTable1;
+    public JTable getCustDetailTable() {
+        return custDetailTable;
     }
-
-    
-                     
 }

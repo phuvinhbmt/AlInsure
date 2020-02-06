@@ -12,17 +12,17 @@ import javax.swing.table.*;
 public final class Controller {
 
     Model model;
-    Login login;
-    SignUp signup;
+    SignInFrame login;
+    SignUpFrame signup;
 
-    MainPage mainPage;
-    Obatin obtain;
-    Quote quote;
-    BookAppointment fin;
-    Edit edit;
-    Purchase purchase;
-    MyStaff staff;
-    ActionItem actionItem;
+    MainPageFrame mainPage;
+    ObtainQuoteFrame obtain;
+    QuoteSelectionFrame quote;
+    BookApmFrame fin;
+    EditAccFrame edit;
+    PurchaseMethodFrame purchase;
+    StaffFrame staff;
+    ActionItemFrame actionItem;
     CustDetailsStaff custDetail;
     ProductView productView;
 
@@ -34,7 +34,7 @@ public final class Controller {
     static String address;
     static String password;
 
-    public Controller(Model model, Login login, SignUp signup, MainPage mainPage, Obatin obtain, Quote quote, BookAppointment fin, Edit edit, Purchase purchase, MyStaff staff, ActionItem actionItem, CustDetailsStaff custDetail, ProductView productView) {
+    public Controller(Model model, SignInFrame login, SignUpFrame signup, MainPageFrame mainPage, ObtainQuoteFrame obtain, QuoteSelectionFrame quote, BookApmFrame fin, EditAccFrame edit, PurchaseMethodFrame purchase, StaffFrame staff, ActionItemFrame actionItem, CustDetailsStaff custDetail, ProductView productView) {
         this.model = model;
         this.login = login;
         this.signup = signup;
@@ -57,7 +57,7 @@ public final class Controller {
         handlePaymentMethod();
         handleRequestChange();
 
-        // staff handler
+        // staffFrm handler
         handleSearchUser();
         handleCustomerProduct();
         handleCustomerDetail();
@@ -83,7 +83,7 @@ public final class Controller {
     
     
     public boolean verifyStaffLogin(String username, String password)  {
-        // select staff from database and store result  set
+        // select staffFrm from database and store result  set
         try {
             ResultSet resultSet = model.selectStaffByUsernamePassword(username, password);
             while (resultSet.next()) {
@@ -100,7 +100,7 @@ public final class Controller {
 
     // customer handlers
     public void handleLogin() {
-        // Login events
+        // SignInFrame events
         login.getLogLogBut().addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String password = String.valueOf(login.getLogPassText().getPassword());
@@ -113,12 +113,12 @@ public final class Controller {
                     
                     
                     // function logLogButActionPerformed
-                    All_Insure.mainy.getLogin().setText("Sign Out");
-                    All_Insure.mainy.getSignUp().setText("");
-                    All_Insure.mainy.revalidate();
-                    All_Insure.mainy.repaint();
-                    All_Insure.log.setVisible(false);
-                    All_Insure.staff.setVisible(true);
+                    Main.mainPageFrm.getSignInLbl().setText("Sign Out");
+                    Main.mainPageFrm.getSignUpLbl().setText("");
+                    Main.mainPageFrm.revalidate();
+                    Main.mainPageFrm.repaint();
+                    Main.signInFrm.setVisible(false);
+                    Main.staffFrm.setVisible(true);
                     
                     currentUsername = username;
                     login.loggedIn = true;
@@ -127,11 +127,11 @@ public final class Controller {
                     login.getLogPassText().setText("");
                     
                 } else if (verifyCustomerLogin(username, password)) {
-                    All_Insure.mainy.getLogin().setText("Sign Out");
-                    All_Insure.mainy.getSignUp().setText("");
-                    All_Insure.mainy.revalidate();
-                    All_Insure.mainy.repaint();
-                    All_Insure.log.setVisible(false);
+                    Main.mainPageFrm.getSignInLbl().setText("Sign Out");
+                    Main.mainPageFrm.getSignUpLbl().setText("");
+                    Main.mainPageFrm.revalidate();
+                    Main.mainPageFrm.repaint();
+                    Main.signInFrm.setVisible(false);
                     
                     currentUsername = username;
                     login.loggedIn = true;
@@ -196,7 +196,7 @@ public final class Controller {
                 System.out.printf("allow request:\n \tmobile: %s address: %s %s\n", mobile, address, mobile);
                 staff.actionItemActionPerformed(evt);
                 
-                JTable table = All_Insure.actionItem.getjTable1();
+                JTable table = Main.actionItemFrm.getjTable1();
                 // get selected customer 
                 String custId = getSelectedCustIdInJTable(staff.getjTable2());
                 
@@ -229,10 +229,10 @@ public final class Controller {
     }
     
     public void approveRequestChange() {
-        All_Insure.actionItem.getjButton1().addActionListener((ActionEvent e) -> {
+        Main.actionItemFrm.getjButton1().addActionListener((ActionEvent e) -> {
             try {
                 String custId = getSelectedCustIdInJTable(staff.getjTable2());
-                JTable table = All_Insure.actionItem.getjTable1();
+                JTable table = Main.actionItemFrm.getjTable1();
                 String newMob = (String) table.getValueAt(0, 2);
                 String newMail = (String) table.getValueAt(1, 2);
                 String newAddr = (String) table.getValueAt(2, 2);
@@ -247,7 +247,7 @@ public final class Controller {
     } 
     
     public void handleRequestChange() {
-        edit.getChange().addActionListener((java.awt.event.ActionEvent evt) -> {
+        edit.getRequestBtn().addActionListener((java.awt.event.ActionEvent evt) -> {
             address = edit.getjTextField1().getText();
             mobile = edit.getjTextField3().getText();
             email = edit.getjTextField5().getText();
@@ -272,16 +272,10 @@ public final class Controller {
             insurance.setInsurance_type("Car");
         });
 
-//        price = calcPrice();
-//        String message = String.format("%.2f$ per week", price);
-//        obtain.getjTextField1().setText(message);
 
     }
 
     public void handlePurchaseInsurance() {
-//        price = calcPrice();
-//        String message = String.format("%.2f$ per week", price) ;
-//        obtain.getjTextField1().setText(message);
 
         int custId = 0;
         try {
@@ -295,9 +289,6 @@ public final class Controller {
         insurance.setCustomer_id(custId);
         insurance.setPrice(price);
 
-//        System.out.printf("insurance in selectQuote: %s\n", insurance.getInsurance_type());
-//        System.out.printf("price: %s\n", insurance.getPrice());
-//        System.out.printf("cust id: %d\n", insurance.getCustomer_id());
         try {
             model.insertInsurance(custId, insurance);
         } catch (SQLException ex) {
@@ -331,14 +322,7 @@ public final class Controller {
             }
 
             //add new credit card to database
-//            try {
-//                model.insertPayment(cnumber, month, year, cvv, customerId);
-//            } catch (SQLException ex) {
-//                ex.printStackTrace();
-//            }
-
             handlePurchaseInsurance();
-
             //display purchased insurance at jtable
             try {
                 //get customer id from customer username
@@ -359,7 +343,7 @@ public final class Controller {
         });
     }
 
-    // staff handlers
+    // staffFrm handlers
     public void handleSearchUser() {
 
 //        searchCustomerByFname();
@@ -397,7 +381,7 @@ public final class Controller {
     public void handleCustomerDetail() {
         staff.getjButton1().addActionListener((java.awt.event.ActionEvent evt) -> {
             custDetail.setVisible(true);
-//            refreshJTable(custDetail.getjTable1());
+//            refreshJTable(custDetail.getCustDetailTable());
             int row = staff.getjTable2().getSelectedRow();
             System.out.println("Selected row = " + row);
             if (row == -1) {
@@ -437,16 +421,12 @@ public final class Controller {
         });
     }
 
-//        });
-//    }
-//
-//    
     public void displayCustomer(int row, String id, String fname, String lname) {
 
-//        ((AbstractTableModel) staff.getjTable2().getModel()).setRowCount(0);
+//        ((AbstractTableModel) staffFrm.getjTable2().getModel()).setRowCount(0);
         DefaultTableModel model = (DefaultTableModel) staff.getjTable2().getModel();
 //        model.getDataVector().removeAllElements();
-//        staff.getjTable2().revalidate();
+//        staffFrm.getjTable2().revalidate();
 
         staff.getjTable2().setValueAt(id, row, 0);
         staff.getjTable2().setValueAt(fname, row, 1);
@@ -463,14 +443,6 @@ public final class Controller {
             table.setValueAt("", row, 2);
             row++;
         }
-//        System.out.println(staff.getjTable2().getRowCount());
-//        int row = 0;
-//        while (row <= staff.getjTable2().getRowCount()) {
-//            staff.getjTable2().setValueAt(null, row, 0);
-//            staff.getjTable2().setValueAt(null, row, 1);
-//            staff.getjTable2().setValueAt(null, row, 2);
-//            row++
-//        }
     }
 
     
@@ -483,12 +455,11 @@ public final class Controller {
                 String email = resultSet.getString("email");
                 String phone = resultSet.getString("phone");
                 System.out.printf("%s %s %s", address, email, phone);
-                custDetail.getjTable1().setValueAt(phone, 0, 1);
-                custDetail.getjTable1().setValueAt(email, 1, 1);
-                custDetail.getjTable1().setValueAt(address, 2, 1);
+                custDetail.getCustDetailTable().setValueAt(phone, 0, 1);
+                custDetail.getCustDetailTable().setValueAt(email, 1, 1);
+                custDetail.getCustDetailTable().setValueAt(address, 2, 1);
             }
         } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(mainPage, "Customer not found!!");
                ex.printStackTrace();
         }
     }
@@ -590,17 +561,6 @@ public final class Controller {
 
             // while result from select has > 0 rows, populate jtable
             displayCustomer(resultSet);
-//                while (resultSet.next()) {
-//                    String fname = resultSet.getString("fname");
-//                    String lname = resultSet.getString("lname");
-//                    String id = resultSet.getString("id");
-//                    displayCustomer(totalCust, id, fname, lname);
-//                    totalCust++;
-//                }
-//                // if no customers found, inform
-//                if (totalCust == 0) {
-////                    JOptionPane.showMessageDialog(null, "No customer found!!");
-//                }
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(mainPage, "Customer not found!!");

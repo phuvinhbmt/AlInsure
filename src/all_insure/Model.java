@@ -70,17 +70,6 @@ public final class Model {
     }
     
    
-//    public ResultSet selectCustomer(String... param) throws SQLException {
-//        String selectQuery = selectCust;
-//        for(int i = 0; i < param.length; i++) {
-//            if(i%2 == 0) {
-//                selectQuery += (param[i] + " = ");
-//            } else if (i%2 != 0) {
-//                
-//            }
-//        }
-//        
-//    }
     
     public ResultSet selectCustomerByUsername(String username) throws SQLException {
         String selectQuery = String.format("select * from CUSTOMER where username = '?'");

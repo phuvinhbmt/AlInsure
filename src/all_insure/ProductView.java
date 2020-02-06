@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package all_insure;
 
 import javax.swing.JTable;
@@ -14,25 +9,23 @@ import javax.swing.JTable;
 public class ProductView extends javax.swing.JFrame {
     
     // Variables declaration - do not modify                     
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel titleLbl;
+    private javax.swing.JLabel cusLbl;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable productTable;
     // End of variables declaration     
 
     public ProductView() {
         super("Customer products");
         initComponents();
     }
-
     
     //setters 
 
     public JTable getjTable1() {
-
-        return jTable1;
+        return productTable;
     }
 
     /**
@@ -44,21 +37,21 @@ public class ProductView extends javax.swing.JFrame {
     private void initComponents() {
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        titleLbl = new javax.swing.JLabel();
+        cusLbl = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        productTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("SimSun-ExtB", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 153, 102));
-        jLabel1.setText("myInsurance");
+        titleLbl.setFont(new java.awt.Font("SimSun-ExtB", 1, 24)); // NOI18N
+        titleLbl.setForeground(new java.awt.Color(0, 153, 102));
+        titleLbl.setText("MyInsurance");
 
-        jLabel2.setFont(new java.awt.Font("SimSun-ExtB", 1, 18)); // NOI18N
-        jLabel2.setText("Customer Products: ");
+        cusLbl.setFont(new java.awt.Font("SimSun-ExtB", 1, 18)); // NOI18N
+        cusLbl.setText("Customer Products: ");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        productTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
                     {null, null, null},
                     {null, null, null},
@@ -82,27 +75,25 @@ public class ProductView extends javax.swing.JFrame {
                     "Customer ID", "Insurance", "Price"
                 }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(productTable);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jLabel2)
+                                        .addComponent(titleLbl)
+                                        .addComponent(cusLbl)
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(168, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel1)
+                                .addComponent(titleLbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel2)
+                                .addComponent(cusLbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
                                 .addContainerGap())
