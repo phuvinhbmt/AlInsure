@@ -3,15 +3,15 @@
 
 ## General info
 This is group project of CSIT214: IT Project Management by HD group. Members are:
-* Thai Quang Thinh Project Manager)
+* Thai Quang Thinh - Project Manager
 * Phu Vinh Nguyen
 * Chai Forest
 * Felicina Chau  
 * Jonathan Souleyo  
-Our group achieved 23.5/25 for whole project(including documents and source code). We achieved full mark for presenting source code and app.
+Our group achieved 23.5/25 for whole project(including documents and source code). We achieved full mark for demonstrating application.
 
 ## Screenshots
-![View folder](./AlInsure/img/)
+![View folder](../../tree/master/img/)
 
 ## Technologies
 * Java 11.0.4
