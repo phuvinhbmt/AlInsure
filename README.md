@@ -11,7 +11,7 @@ This is group project of CSIT214: IT Project Management by HD group. Members are
 Our group achieved 23.5/25 for whole project(including documents and source code). We achieved full mark for presenting source code and app.
 
 ## Screenshots
-!View folder](./AlInsure/img/)
+![View folder](./AlInsure/img/)
 
 ## Technologies
 * Java 11.0.4
